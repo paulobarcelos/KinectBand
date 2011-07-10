@@ -36,11 +36,15 @@ void KinectBand::setup(ofxDepthGenerator* depthGenerator, ofxUserGenerator* user
 	userGenerator->setMaxNumberOfUsers(3);
 	
 	bass.setup(depthGenerator);
+	drums.setup(depthGenerator);
+	key.setup(depthGenerator);
 }
 ///////////////////////////////////////////////////////////////////////////////////
 // update -------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////
 void KinectBand::update()
 {	
-	bass.update(userGenerator->getTrackedUser(1));
+	//bass.update(userGenerator->getTrackedUser(1));
+	//drums.update(userGenerator->getTrackedUser(1));
+	key.update(userGenerator->getTrackedUser(1));
 }

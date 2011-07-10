@@ -39,7 +39,7 @@ void KinectBass::update(ofxTrackedUser* user){
 			
 			ofxOscMessage msg;
 			msg.setAddress("/osc/midi/out/control");
-			msg.addIntArg(1); // channel
+			msg.addIntArg(BASS_MIDI_CHANNEL); // channel
 			msg.addIntArg(1); // index
 			msg.addIntArg(int(output*128)); // value
 			osc.sendMessage(msg);

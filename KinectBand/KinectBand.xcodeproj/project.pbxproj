@@ -15,6 +15,8 @@
 		3866B47213C9DBBD00D38649 /* KinectBand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3866B47113C9DBBD00D38649 /* KinectBand.cpp */; };
 		3866B48413C9DEBB00D38649 /* KinectMusician.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3866B48313C9DEBB00D38649 /* KinectMusician.cpp */; };
 		3866B48B13C9E6FA00D38649 /* KinectBass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3866B48A13C9E6FA00D38649 /* KinectBass.cpp */; };
+		3866B58D13CA1AC600D38649 /* KinectDrums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3866B58C13CA1AC600D38649 /* KinectDrums.cpp */; };
+		3866B65E13CA5C6800D38649 /* KinectKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3866B65D13CA5C6800D38649 /* KinectKey.cpp */; };
 		7786AFE513C851A200769F2B /* libnimCodecs.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7786AFD613C851A200769F2B /* libnimCodecs.dylib */; };
 		7786AFE613C851A200769F2B /* libnimMockNodes.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7786AFD713C851A200769F2B /* libnimMockNodes.dylib */; };
 		7786AFE713C851A200769F2B /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7786AFD813C851A200769F2B /* libnimRecorder.dylib */; };
@@ -120,6 +122,10 @@
 		3866B48313C9DEBB00D38649 /* KinectMusician.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectMusician.cpp; sourceTree = "<group>"; };
 		3866B48913C9E6FA00D38649 /* KinectBass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectBass.h; sourceTree = "<group>"; };
 		3866B48A13C9E6FA00D38649 /* KinectBass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectBass.cpp; sourceTree = "<group>"; };
+		3866B58B13CA1AC600D38649 /* KinectDrums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectDrums.h; sourceTree = "<group>"; };
+		3866B58C13CA1AC600D38649 /* KinectDrums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectDrums.cpp; sourceTree = "<group>"; };
+		3866B65C13CA5C6800D38649 /* KinectKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectKey.h; sourceTree = "<group>"; };
+		3866B65D13CA5C6800D38649 /* KinectKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KinectKey.cpp; sourceTree = "<group>"; };
 		7786AFD513C851A200769F2B /* change_exec_paths.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_exec_paths.sh; sourceTree = "<group>"; };
 		7786AFD613C851A200769F2B /* libnimCodecs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnimCodecs.dylib; sourceTree = "<group>"; };
 		7786AFD713C851A200769F2B /* libnimMockNodes.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnimMockNodes.dylib; sourceTree = "<group>"; };
@@ -779,6 +785,10 @@
 				3866B48313C9DEBB00D38649 /* KinectMusician.cpp */,
 				3866B48913C9E6FA00D38649 /* KinectBass.h */,
 				3866B48A13C9E6FA00D38649 /* KinectBass.cpp */,
+				3866B58B13CA1AC600D38649 /* KinectDrums.h */,
+				3866B58C13CA1AC600D38649 /* KinectDrums.cpp */,
+				3866B65C13CA5C6800D38649 /* KinectKey.h */,
+				3866B65D13CA5C6800D38649 /* KinectKey.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -898,6 +908,8 @@
 				3866B47213C9DBBD00D38649 /* KinectBand.cpp in Sources */,
 				3866B48413C9DEBB00D38649 /* KinectMusician.cpp in Sources */,
 				3866B48B13C9E6FA00D38649 /* KinectBass.cpp in Sources */,
+				3866B58D13CA1AC600D38649 /* KinectDrums.cpp in Sources */,
+				3866B65E13CA5C6800D38649 /* KinectKey.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,8 +12,9 @@
 
 #include "ofMain.h"
 #include "ofxOpenNI.h"
-#include "KinectMusician.h"
 #include "KinectBass.h"
+#include "KinectDrums.h"
+#include "KinectKey.h"
 
 ////////////////////////////////////////////////////////////
 // CLASS DEFINITION ----------------------------------------
@@ -32,6 +33,8 @@ public:
 	ofxDepthGenerator*	depthGenerator;
 	
 	KinectBass			bass;
+	KinectDrums			drums;
+	KinectKey			key;
 
 	
 private:

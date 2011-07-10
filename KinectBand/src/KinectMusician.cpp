@@ -60,7 +60,7 @@ void KinectMusician::start(ofxTrackedUser* user){
 ///////////////////////////////////////////////////////////////////////////////////
 bool KinectMusician::memberExists(XnPoint3D& memberPoint){	
 	if(memberPoint.X < -1500 || memberPoint.X > 1500) return false; 
-	if(memberPoint.Y < -1500 || memberPoint.Y > 1500) return false; 
+	if(memberPoint.Y < -1200 || memberPoint.Y > 1200) return false; 
 	if(memberPoint.Z < 0 || memberPoint.Z > 3000) return false; 
 	return true;
 }

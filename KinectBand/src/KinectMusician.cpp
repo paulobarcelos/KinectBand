@@ -29,6 +29,8 @@ KinectMusician::~KinectMusician(){
 ///////////////////////////////////////////////////////////////////////////////////
 void KinectMusician::setup(ofxDepthGenerator* depthGenerator){	
 	this->depthGenerator = depthGenerator;
+	
+	osc.setup(OSC_HOST, OSC_PORT);
 }
 ///////////////////////////////////////////////////////////////////////////////////
 // update -------------------------------------------------------------------------
@@ -52,4 +54,13 @@ void KinectMusician::stop(){
 void KinectMusician::start(ofxTrackedUser* user){	
 	this->user = user;
 	isTracked = true;
+}
+///////////////////////////////////////////////////////////////////////////////////
+// memberExists -------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////
+bool KinectMusician::memberExists(XnPoint3D& memberPoint){	
+	if(memberPoint.X < -1500 || memberPoint.X > 1500) return false; 
+	if(memberPoint.Y < -1500 || memberPoint.Y > 1500) return false; 
+	if(memberPoint.Z < 0 || memberPoint.Z > 3000) return false; 
+	return true;
 }

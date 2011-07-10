@@ -10,8 +10,12 @@
 #ifndef _KINECT_MUSICIAN
 #define _KINECT_MUSICIAN
 
+#define OSC_HOST "localhost"
+#define OSC_PORT 57117
+
 #include "ofMain.h"
 #include "ofxOpenNI.h"
+#include "ofxOsc.h"
 
 ////////////////////////////////////////////////////////////
 // CLASS DEFINITION ----------------------------------------
@@ -27,12 +31,14 @@ public:
 	void				update(ofxTrackedUser* user);
 	void				start(ofxTrackedUser* user);
 	void				stop();
+	bool				memberExists(XnPoint3D& memberPoint);
 	
 	ofxTrackedUser*		user;
 	ofxDepthGenerator*	depthGenerator;
 	
 	bool				isTracked;
 	
+	ofxOscSender		osc;
 	
 };
 #endif

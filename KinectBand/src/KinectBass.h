@@ -10,6 +10,8 @@
 #ifndef _KINECT_BASS
 #define _KINECT_BASS
 
+#define BASS_MAX_HAND_DIST 1400.f
+
 #include "KinectMusician.h"
 
 ////////////////////////////////////////////////////////////
@@ -21,6 +23,9 @@ public:
 
 	void	update(ofxTrackedUser* user);	
 	float	distance;
+	float	output;
+	
+	ofVec3f left, right;
 	
 };
 #endif

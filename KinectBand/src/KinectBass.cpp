@@ -17,20 +17,32 @@ void KinectBass::update(ofxTrackedUser* user){
 
 	if(isTracked){
 		ofxLimb& leftArm = user->left_lower_arm;
-		ofxLimb& rightArm = user->right_lower_arm;
+		ofxLimb& rightArm = user->right_lower_arm;		
 		
 		XnPoint3D& leftHand = leftArm.position[1];
-		XnPoint3D& rightHand = rightArm.position[1];
+		XnPoint3D& rightHand = rightArm.position[1];		
 		
 		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &leftHand, &leftHand);
-		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightHand, &rightHand);
+		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightHand, &rightHand);	
 		
-		ofVec3f leftVec(leftHand.X, leftHand.Y, leftHand.Z);
-		ofVec3f rightVec(rightHand.X, rightHand.Y, rightHand.Z);
+		if(memberExists(leftHand) && memberExists(rightHand)){
 		
-		distance = (leftVec - rightVec).length();
 		
-		cout << distance << endl;
-		
+			left = ofVec3f(leftHand.X, leftHand.Y, leftHand.Z);
+			right = ofVec3f(rightHand.X, rightHand.Y, rightHand.Z);
+	
+			distance = (left - right).length();
+			
+			float norm = ofClamp(distance/BASS_MAX_HAND_DIST, 0, 1);
+			
+			output = output*.9f + norm*0.1f;
+			
+			ofxOscMessage msg;
+			msg.setAddress("/osc/midi/out/control");
+			msg.addIntArg(1); // channel
+			msg.addIntArg(1); // index
+			msg.addIntArg(int(output*128)); // value
+			osc.sendMessage(msg);
+		}			
 	}	
 }

@@ -16,61 +16,86 @@ void KinectKey::update(ofxTrackedUser* user){
 	KinectMusician::update(user);
 	
 	if(isTracked){
-		ofxLimb& leftShoulder = user->left_upper_arm;
-		ofxLimb& leftArm = user->left_lower_arm;
+		ofxLimb& leftUpperArm = user->left_upper_arm;
+		ofxLimb& leftLowerArm = user->left_lower_arm;
 		
-		ofxLimb& rightArm = user->right_lower_arm;		
+		XnPoint3D& leftShoulder = leftUpperArm.position[0];
+		XnPoint3D& leftHand = leftLowerArm.position[1];
 		
-		XnPoint3D& leftShoulderStart = leftShoulder.position[0];
-		XnPoint3D& leftHand = leftArm.position[1];
-		XnPoint3D& rightHand = rightArm.position[1];		
-		
-		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &leftShoulderStart, &leftShoulderStart);
+		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &leftShoulder, &leftShoulder);
 		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &leftHand, &leftHand);
-		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightHand, &rightHand);	
 		
-		if(memberExists(leftHand) && memberExists(leftHand)){	
+		if(memberExists(leftShoulder) && memberExists(leftHand)){	
 			ofVec3f lHand = ofVec3f(leftHand.X, leftHand.Y, leftHand.Z);
-			ofVec3f lShoulder = ofVec3f(leftShoulderStart.X, leftShoulderStart.Y, leftShoulderStart.Z);
+			ofVec3f lShoulder = ofVec3f(leftShoulder.X, leftShoulder.Y, leftShoulder.Z);
 			
-			float lDiff = lShoulder.y - lHand.y;
+			float diff = lShoulder.y - lHand.y;			
+			leftDiff = leftDiff * 0.5f + diff * 0.5f;
 			
-			lDiff = lDiff + 500.f; // range 0 (top) - 1000 (bottom)
-			lDiff = 1000.f - lDiff; // range 1000 - 0;
-			lDiff = lDiff / 1000.f; 
-			lDiff = ofClamp(lDiff, 0, 1);
+			if (leftDiff < -400.f) {
+				if(!leftInside){
+					leftInside = true;
+					ofxOscMessage msg;
+					msg.setAddress("/osc/midi/out/noteOn");
+					msg.addIntArg(KEY_MIDI_CHANNEL); // channel
+					msg.addIntArg(1); // index
+					msg.addIntArg(1); // velocity
+					osc.sendMessage(msg);
+				
+					cout << "linside" << endl;
+				}
+			}
+			else {
+				leftInside = false;
+				ofxOscMessage msg;				
+				msg.setAddress("/osc/midi/out/noteOff");
+				msg.addIntArg(KEY_MIDI_CHANNEL); // channel
+				msg.addIntArg(1); // index
+				msg.addIntArg(1); // velocity
+				osc.sendMessage(msg);
+			}
 			
-			smoothLDiff = smoothLDiff * 0.8f + lDiff * 0.2f;
-			
-			ofxOscMessage msg;
-			msg.setAddress("/osc/midi/out/control");
-			msg.addIntArg(KEY_MIDI_CHANNEL); // channel
-			msg.addIntArg(2); // index
-			msg.addIntArg(int(smoothLDiff*128)); // value
-			osc.sendMessage(msg);
 		}
 		
-		if(memberExists(rightHand)){			
-			right = ofVec3f(rightHand.X, rightHand.Y, rightHand.Z);
-			smoothRight = smoothRight * 0.7f + right * 0.3f;
+		ofxLimb& rightUpperArm = user->right_upper_arm;
+		ofxLimb& rightLowerArm = user->right_lower_arm;
+		
+		XnPoint3D& rightShoulder = rightUpperArm.position[0];
+		XnPoint3D& rightHand = rightLowerArm.position[1];
+		
+		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightShoulder, &rightShoulder);
+		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightHand, &rightHand);
+		
+		if(memberExists(rightShoulder) && memberExists(rightHand)){	
+			ofVec3f rHand = ofVec3f(rightHand.X, rightHand.Y, rightHand.Z);
+			ofVec3f rShoulder = ofVec3f(rightShoulder.X, rightShoulder.Y, rightShoulder.Z);
 			
-			ofVec2f smoothRight2D = smoothRight;
-			ofVec2f lastSmoothRight2D = lastSmoothRight;
+			float diff = rShoulder.y - rHand.y;			
+			rightDiff = rightDiff * 0.5f + diff * 0.5f;
 			
-			diff = (smoothRight2D - lastSmoothRight2D).length();			
-			smoothDiff = smoothDiff*0.965f + diff*0.035f;
+			if (rightDiff < -400.f) {
+				if(!rightInside){
+					rightInside = true;
+					ofxOscMessage msg;
+					msg.setAddress("/osc/midi/out/noteOn");
+					msg.addIntArg(KEY_MIDI_CHANNEL); // channel
+					msg.addIntArg(2); // index
+					msg.addIntArg(1); // velocity
+					osc.sendMessage(msg);
+					
+					cout << "linside" << endl;
+				}
+			}
+			else {
+				rightInside = false;
+				ofxOscMessage msg;				
+				msg.setAddress("/osc/midi/out/noteOff");
+				msg.addIntArg(KEY_MIDI_CHANNEL); // channel
+				msg.addIntArg(2); // index
+				msg.addIntArg(1); // velocity
+				osc.sendMessage(msg);
+			}
 			
-			activity = (smoothDiff - 2) / 55.f;
-			activity = ofClamp(activity, 0, 1);
-			
-			lastSmoothRight = smoothRight;
-			
-			ofxOscMessage msg;
-			msg.setAddress("/osc/midi/out/control");
-			msg.addIntArg(KEY_MIDI_CHANNEL); // channel
-			msg.addIntArg(1); // index
-			msg.addIntArg(int(activity*128)); // value
-			osc.sendMessage(msg);
-		}			
+		}
 	}	
 }

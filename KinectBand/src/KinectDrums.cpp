@@ -29,7 +29,7 @@ void KinectDrums::update(ofxTrackedUser* user){
 		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &leftHand, &leftHand);
 		depthGenerator->getXnDepthGenerator().ConvertProjectiveToRealWorld(1, &rightHand, &rightHand);	
 		
-		if(memberExists(leftHand) && memberExists(leftHand)){	
+		if(memberExists(leftShoulderStart) && memberExists(leftHand)){	
 			ofVec3f lHand = ofVec3f(leftHand.X, leftHand.Y, leftHand.Z);
 			ofVec3f lShoulder = ofVec3f(leftShoulderStart.X, leftShoulderStart.Y, leftShoulderStart.Z);
 

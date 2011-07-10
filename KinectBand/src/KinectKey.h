@@ -22,15 +22,18 @@ class KinectKey : public KinectMusician{
 public:
 	
 	void	update(ofxTrackedUser* user);	
+	
+	bool	leftInside, rightInside;
+	float	leftDiff, rightDiff;
 	//float	distance;
-	float	activity;
+	/*float	activity;
 	float	tempo;
 	
 	ofVec3f right;
 	ofVec3f smoothRight, lastSmoothRight;
 	float	diff, smoothDiff;
 	
-	float smoothLDiff, height;
+	float smoothLDiff, height;*/
 	
 };
 #endif

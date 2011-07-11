@@ -32,7 +32,7 @@ void KinectKey::update(ofxTrackedUser* user){
 			float diff = lShoulder.y - lHand.y;			
 			leftDiff = leftDiff * 0.5f + diff * 0.5f;
 			
-			if (leftDiff < -400.f) {
+			if (leftDiff < -350.f) {
 				if(!leftInside){
 					leftInside = true;
 					ofxOscMessage msg;
@@ -73,7 +73,7 @@ void KinectKey::update(ofxTrackedUser* user){
 			float diff = rShoulder.y - rHand.y;			
 			rightDiff = rightDiff * 0.5f + diff * 0.5f;
 			
-			if (rightDiff < -400.f) {
+			if (rightDiff < -350.f) {
 				if(!rightInside){
 					rightInside = true;
 					ofxOscMessage msg;

@@ -10,7 +10,7 @@
 #ifndef _KINECT_KEY
 #define _KINECT_KEY
 
-#define KEY_MIDI_CHANNEL 1
+#define KEY_MIDI_CHANNEL 3
 
 #include "KinectMusician.h"
 

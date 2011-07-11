@@ -2,6 +2,7 @@
 
 void testApp::setup() {
 	ofSetVerticalSync(true);
+	ofSetWindowShape(1280, 480);
 	context.setup();
 	depth.setup(&context);
 	image.setup(&context);
